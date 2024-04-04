@@ -32,8 +32,8 @@ jobs:
       - name: Swagger UI Action
         uses: Legion2/swagger-ui-action@v1.2.0
         with:
-          output: './docs/swagger'
-          spec-file: './docs/swagger/sacapi.json'
+          output: swagger-ui
+          spec-file: sacapi.json
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Pages
@@ -42,8 +42,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          # Changed to only upload ./docs/swagger directory
-          path: './docs/swagger'
+          path: './swagger-ui'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
