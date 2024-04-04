@@ -29,20 +29,23 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      #build swagger ui from sacapi.json file
       - name: Swagger UI Action
         uses: Legion2/swagger-ui-action@v1.2.0
         with:
           output: swagger-ui
-          spec-file: sacapi.json
-      - name: Checkout
-        uses: actions/checkout@v4
+          spec-file: docs/swagger/sacapi.json
+        
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: './swagger-ui'
+          path: swagger-ui
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
